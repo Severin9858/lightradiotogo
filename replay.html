@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>TV Light Radio 93.9 FM | Web TV Chrétienne en Direct</title>
+    <meta name="description" content="TV Light Radio 93.9 FM : regardez la chaîne YouTube en direct, replays des cultes et émissions. Une télévision chrétienne moderne au Togo.">
+    <meta name="keywords" content="Light Radio TV, web tv chrétienne, direct youtube, replay gospel, Lomé Togo">
+    <meta name="author" content="Light Radio 93.9 FM">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lightradiotogo.com/tv">
+    <meta property="og:title" content="TV Light Radio 93.9 FM | Regardez en direct">
+    <meta property="og:description" content="La télévision chrétienne en ligne de Light Radio. Suivez nos cultes, émissions et enseignements.">
+    <meta property="og:image" content="images/logoradio.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* === BASE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #ffffff; overflow-x: hidden; }
+        header { background: #000000dd; backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; padding: 12px 0; border-bottom: 1px solid rgba(255, 0, 0, 0.3); transition: transform 0.3s ease; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #ff0000; object-fit: cover; }
+        .logo h1 { font-size: 1.6rem; font-weight: 700; background: linear-gradient(135deg, #fff, #ff4444); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo span { font-size: 0.9rem; color: #ff4444; font-weight: 400; }
+        nav ul { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; justify-content: center; }
+        nav a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.2s; padding: 6px 0; border-bottom: 2px solid transparent; white-space: nowrap; }
+        nav a:hover, nav a.active { color: #ff4444; border-bottom-color: #ff4444; }
+        .live-badge { position: fixed; top: 80px; right: 20px; background: #ff0000; padding: 8px 16px; border-radius: 40px; font-weight: bold; display: flex; align-items: center; gap: 8px; z-index: 99; box-shadow: 0 0 15px rgba(255,0,0,0.5); animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0.8; transform: scale(1); } }
+        .tv-section { margin: 40px 0; }
+        .player-wrapper { background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); transition: 0.3s; }
+        .player-header { background: #111; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #222; }
+        .live-info { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .live-badge-sm { background: #ff0000; padding: 4px 12px; border-radius: 30px; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+        .live-title { font-weight: 600; font-size: 1rem; }
+        .player-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .player-actions button { background: #222; border: none; color: white; padding: 8px 16px; border-radius: 30px; cursor: pointer; font-weight: 500; transition: 0.2s; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .player-actions button:hover { background: #ff4444; color: white; }
+        .video-container { position: relative; width: 100%; aspect-ratio: 16 / 9; }
+        .video-container iframe { width: 100%; height: 100%; border: none; }
+        .replays-section { margin: 60px 0; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; display: flex; align-items: center; gap: 12px; border-left: 4px solid #ff4444; padding-left: 16px; }
+        .replay-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .replay-card { background: #111; border-radius: 16px; overflow: hidden; transition: 0.3s; cursor: pointer; border: 1px solid #222; }
+        .replay-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); border-color: #ff4444; }
+        .replay-thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+        .replay-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .replay-card:hover .replay-thumb img { transform: scale(1.05); }
+        .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; backdrop-filter: blur(4px); transition: 0.2s; opacity: 0; }
+        .replay-card:hover .play-icon { opacity: 1; }
+        .replay-info { padding: 16px; }
+        .replay-title { font-weight: 600; font-size: 1rem; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .replay-meta { font-size: 0.75rem; color: #aaa; display: flex; align-items: center; gap: 12px; }
+        .sticky-player { position: fixed; bottom: 0; left: 0; right: 0; background: #000000cc; backdrop-filter: blur(12px); padding: 8px 20px; border-top: 1px solid #ff4444; z-index: 1000; transition: transform 0.3s; }
+        .sticky-player.hidden { transform: translateY(100%); }
+        .player-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
+        .player-info { display: flex; align-items: center; gap: 12px; }
+        .player-info img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ff4444; object-fit: cover; }
+        .player-controls { display: flex; align-items: center; gap: 15px; }
+        .player-btn { background: #ff4444; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: white; font-size: 1rem; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
+        .player-btn:hover { transform: scale(1.1); background: white; color: #ff4444; }
+        .player-equalizer { display: flex; gap: 4px; align-items: flex-end; height: 20px; }
+        .player-equalizer span { width: 4px; background: #ff4444; border-radius: 2px; transition: height 0.2s; height: 4px; }
+        .player-volume { display: flex; align-items: center; gap: 8px; }
+        .player-volume input { width: 80px; }
+        .player-toggle { position: absolute; top: -32px; left: 50%; transform: translateX(-50%); background: #000; border: 1px solid #ff4444; border-bottom: none; padding: 4px 16px; border-radius: 20px 20px 0 0; cursor: pointer; font-size: 0.8rem; color: #fff; }
+        footer { background: #030303; padding: 40px 0 20px; margin-top: 60px; border-top: 1px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .footer-grid h3 { color: #ff4444; margin-bottom: 15px; font-size: 1.2rem; }
+        .footer-grid p, .footer-grid a { color: #aaa; text-decoration: none; margin-bottom: 8px; display: block; transition: 0.2s; }
+        .footer-grid a:hover { color: #ff4444; }
+        .copy { text-align: center; padding-top: 20px; border-top: 1px solid #222; color: #666; font-size: 0.8rem; }
+        .whatsapp { position: fixed; bottom: 100px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: white; text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 99; transition: 0.2s; }
+        .whatsapp:hover { transform: scale(1.1); }
+        .loading, .error-message { text-align: center; padding: 40px; background: #1a1a1a; border-radius: 16px; color: #aaa; grid-column: 1 / -1; }
+        .error-message { color: #ff8888; }
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff4444;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            z-index: 1100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast-notification.show { opacity: 1; }
+        .back-live-btn {
+            background: #222;
+            border: none;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            margin-left: 12px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: 0.2s;
+        }
+        .back-live-btn:hover { background: #ff4444; }
+
+        /* === RESPONSIVE AMÉLIORÉ === */
+        @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            .logo h1 { font-size: 1.3rem; }
+            .logo img { width: 40px; height: 40px; }
+            nav ul { gap: 12px; }
+            nav a { font-size: 0.8rem; white-space: nowrap; }
+            .live-badge { top: auto; bottom: 90px; right: 15px; padding: 6px 12px; font-size: 0.8rem; }
+            .player-header { flex-direction: column; align-items: stretch; }
+            .live-info { justify-content: space-between; }
+            .player-actions { justify-content: center; }
+            .player-actions button { padding: 6px 12px; font-size: 0.7rem; }
+            .section-title { font-size: 1.4rem; }
+            .replay-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+            .replay-title { font-size: 0.9rem; }
+            .player-container { flex-direction: column; align-items: stretch; gap: 8px; }
+            .player-info { justify-content: center; }
+            .player-controls { justify-content: center; }
+            .player-volume { justify-content: center; width: 100%; }
+            .player-volume input { width: 60%; }
+            .sticky-player { padding: 8px 12px; }
+            .player-toggle { font-size: 0.7rem; padding: 4px 12px; top: -28px; }
+            .whatsapp { bottom: 100px; right: 15px; width: 45px; height: 45px; font-size: 1.5rem; }
+            .toast-notification { padding: 8px 16px; font-size: 0.8rem; white-space: nowrap; }
+            .footer-grid { gap: 20px; }
+            .footer-grid h3 { font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 { font-size: 1.1rem; }
+            .logo span { font-size: 0.7rem; }
+            nav ul { gap: 8px; }
+            nav a { font-size: 0.7rem; }
+            .live-title { font-size: 0.85rem; }
+            .player-actions { gap: 8px; }
+            .player-actions button { font-size: 0.65rem; padding: 5px 10px; }
+            .section-title { font-size: 1.2rem; padding-left: 12px; }
+            .replay-grid { grid-template-columns: 1fr; }
+            .replay-card { max-width: 100%; }
+            .player-volume input { width: 100%; }
+            .whatsapp { bottom: 100px; right: 12px; width: 42px; height: 42px; }
+        }
+
+        /* Correction du lecteur radio pour éviter les débordements */
+        @media (max-width: 600px) {
+            .player-container .player-volume {
+                margin-top: 4px;
+            }
+            .player-equalizer span {
+                width: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/logoradio.jpg" alt="Light Radio TV">
+                    <h1>Light Radio <span>TV</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">RADIO</a></li>
+                        <li><a href="tv.html" class="active">TV LIVE</a></li>
+                        <li><a href="programmes.html">PROGRAMMES</a></li>
+                        <li><a href="evenements.html">ÉVÉNEMENTS</a></li>
+                        <li><a href="dons.html">DONS</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="live-badge" id="floatingLiveBadge">
+        <i class="fas fa-circle" style="font-size: 10px;"></i> <span id="liveStatusText">EN DIRECT</span>
+    </div>
+
+    <div class="container tv-section">
+        <div class="player-wrapper">
+            <div class="player-header">
+                <div class="live-info">
+                    <div class="live-badge-sm" id="liveBadgeSm">
+                        <i class="fas fa-circle" style="font-size: 8px;"></i> LIVE
+                    </div>
+                    <div class="live-title" id="liveTitle">Light Radio TV – Diffusion en continu</div>
+                </div>
+                <div class="player-actions">
+                    <button id="shareWhatsApp"><i class="fab fa-whatsapp"></i> Partager</button>
+                    <button id="shareFacebook"><i class="fab fa-facebook"></i> Partager</button>
+                    <button id="watchYoutube"><i class="fab fa-youtube"></i> YouTube</button>
+                    <button id="fullscreenBtn"><i class="fas fa-expand"></i> Plein écran</button>
+                </div>
+            </div>
+            <div class="video-container" id="playerContainer">
+                <iframe id="youtubePlayer" 
+                        src="https://www.youtube.com/embed/live_stream?channel=UC0Pw3UE8gYtLKFBgV1Pyn7w&autoplay=1&mute=1&rel=0&modestbranding=1"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="container replays-section">
+        <div class="section-title">
+            <i class="fas fa-clock"></i> Replays – Derniers cultes et émissions
+        </div>
+        <div class="replay-grid" id="replayGrid">
+            <div class="loading">Chargement des replays...</div>
+        </div>
+    </div>
+
+    <div class="sticky-player" id="stickyPlayer">
+        <button class="player-toggle" id="togglePlayer"><i class="fas fa-chevron-down"></i> Radio</button>
+        <div class="player-container">
+            <div class="player-info">
+                <img src="images/logoradio.jpg" alt="Light Radio">
+                <div><strong>Light Radio 93.9 FM</strong><br><small id="radioStatus">En pause</small></div>
+            </div>
+            <div class="player-controls">
+                <button class="player-btn" id="playPauseRadio"><i class="fas fa-play"></i></button>
+                <div class="player-equalizer" id="radioEqualizer">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="player-volume">
+                <i class="fas fa-volume-up" id="volumeIcon"></i>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.7">
+            </div>
+        </div>
+        <audio id="radioAudio" src="https://a9.asurahosting.com/listen/light_radio_93.9fm/radio.mp3" preload="none"></audio>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Light Radio TV</h3>
+                    <p>La télévision chrétienne qui éclaire les nations. Suivez nos cultes, émissions et enseignements en direct et en replay.</p>
+                </div>
+                <div>
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Lomé – Togo</p>
+                    <p><i class="fas fa-phone"></i> +228 93 79 01 01</p>
+                    <p><i class="fas fa-envelope"></i> contact@lightradiotogo.com</p>
+                </div>
+                <div>
+                    <h3>Suivez-nous</h3>
+                    <a href="https://web.facebook.com/profile.php?id=61582979020376" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://www.youtube.com/@tvlightradio" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://instagram.com/lightradiotogo" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+            <div class="copy">© 2025 Light Radio 93.9 FM – Tous droits réservés | Une radio au service de Dieu</div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/22893790101" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <div id="liveToast" class="toast-notification">
+        <i class="fas fa-broadcast-tower"></i> <span>📡 Le direct a commencé !</span>
+    </div>
+
+    <script>
+        // ==================== CONFIGURATION ====================
+        const API_KEY = 'AIzaSyBD1X6sWYGxQ6HYkhADYIwFABKs7n5Xz1g';
+        const CHANNEL_ID = 'UC0Pw3UE8gYtLKFBgV1Pyn7w';
+        const LIVE_EMBED_URL = `https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1&mute=1&rel=0&modestbranding=1`;
+
+        // Éléments DOM
+        const liveIframe = document.getElementById('youtubePlayer');
+        const liveTitleElem = document.getElementById('liveTitle');
+        const liveBadgeSm = document.getElementById('liveBadgeSm');
+        const floatingLiveBadge = document.getElementById('floatingLiveBadge');
+        const liveStatusText = document.getElementById('liveStatusText');
+        const replayGrid = document.getElementById('replayGrid');
+        const toast = document.getElementById('liveToast');
+
+        // Variables d'état
+        let lastLiveStatus = null;
+        let isCurrentlyOnLive = true;
+        let toastTimeout = null;
+
+        function showToast(message) {
+            if (toastTimeout) clearTimeout(toastTimeout);
+            const toastSpan = toast.querySelector('span');
+            toastSpan.innerText = message;
+            toast.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        async function checkLiveStatusAndSwitch() {
+            try {
+                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&eventType=live&type=video&key=${API_KEY}`;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                const isLive = data.items && data.items.length > 0;
+
+                if (isLive) {
+                    liveStatusText.innerText = 'EN DIRECT';
+                    floatingLiveBadge.style.background = '#ff0000';
+                    if (isCurrentlyOnLive) {
+                        liveBadgeSm.innerHTML = '<i class="fas fa-circle" style="font-size: 8px;"></i> LIVE';
+                        liveBadgeSm.style.background = '#ff0000';
+                    }
+                } else {
+                    liveStatusText.innerText = 'HORS LIGNE';
+                    floatingLiveBadge.style.background = '#444';
+                    if (isCurrentlyOnLive) {
+                        liveBadgeSm.innerHTML = '<i class="fas fa-pause"></i> HORS LIGNE';
+                        liveBadgeSm.style.background = '#444';
+                    }
+                }
+
+                if (isLive && !isCurrentlyOnLive) {
+                    backToLive(true);
+                }
+                lastLiveStatus = isLive;
+            } catch (error) {
+                console.warn('Erreur vérification live :', error);
+            }
+        }
+
+        async function fetchLatestVideos() {
+            try {
+                const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&type=video&maxResults=20`;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                if (!data.items || data.items.length === 0) throw new Error('Aucune vidéo');
+                return data.items.map(item => ({
+                    id: item.id.videoId,
+                    title: item.snippet.title,
+                    publishedAt: item.snippet.publishedAt,
+                    thumbnail: item.snippet.thumbnails.medium.url
+                }));
+            } catch (error) {
+                console.error('Erreur API replays :', error);
+                return [
+                    { id: "ISxLHQaxAZo", title: "🔥 DÉCOUVERTE DU NOUVEAU STUDIO MODERNE DE LIGHT RADIO 93.9 FM | ÉTAPE 1 🚀", publishedAt: "2025-03-15T00:00:00Z", thumbnail: "https://img.youtube.com/vi/ISxLHQaxAZo/mqdefault.jpg" },
+                    { id: "dQw4w9WgXcQ", title: "Culte d'adoration - Light Radio Live", publishedAt: "2025-03-10T00:00:00Z", thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" },
+                    { id: "jNQXAC9IVRw", title: "Enseignement : La Prière Efficace", publishedAt: "2025-03-05T00:00:00Z", thumbnail: "https://img.youtube.com/vi/jNQXAC9IVRw/mqdefault.jpg" }
+                ];
+            }
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        async function renderReplays() {
+            replayGrid.innerHTML = '<div class="loading">Chargement des replays...</div>';
+            const videos = await fetchLatestVideos();
+            if (!videos || videos.length === 0) {
+                replayGrid.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-triangle"></i> Impossible de charger les vidéos.</div>';
+                return;
+            }
+            replayGrid.innerHTML = '';
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'replay-card';
+                card.dataset.id = video.id;
+                card.dataset.title = video.title;
+                card.innerHTML = `
+                    <div class="replay-thumb">
+                        <img src="${video.thumbnail}" alt="${escapeHtml(video.title)}" loading="lazy">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="replay-info">
+                        <div class="replay-title">${escapeHtml(video.title)}</div>
+                        <div class="replay-meta"><i class="far fa-calendar-alt"></i> ${formatDate(video.publishedAt)}</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => loadVideo(video.id, video.title));
+                replayGrid.appendChild(card);
+            });
+        }
+
+        function loadVideo(videoId, title) {
+            liveIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            liveTitleElem.innerText = `${title} (Replay)`;
+            liveBadgeSm.innerHTML = '<i class="fas fa-history"></i> REPLAY';
+            liveBadgeSm.style.background = '#444';
+            floatingLiveBadge.style.background = '#444';
+            liveStatusText.innerText = 'REPLAY';
+            isCurrentlyOnLive = false;
+        }
+
+        function backToLive(showNotification = false) {
+            if (isCurrentlyOnLive) return;
+            liveIframe.src = LIVE_EMBED_URL;
+            liveTitleElem.innerText = 'Light Radio TV – Diffusion en continu';
+            liveBadgeSm.innerHTML = '<i class="fas fa-circle" style="font-size: 8px;"></i> LIVE';
+            liveBadgeSm.style.background = '#ff0000';
+            isCurrentlyOnLive = true;
+            checkLiveStatusAndSwitch();
+            if (showNotification) showToast('📡 Le direct a commencé !');
+        }
+
+        function addBackToLiveButton() {
+            const liveInfoDiv = document.querySelector('.player-header .live-info');
+            if (!liveInfoDiv.querySelector('.back-live-btn')) {
+                const backBtn = document.createElement('button');
+                backBtn.className = 'back-live-btn';
+                backBtn.innerHTML = '<i class="fas fa-arrow-left"></i> Retour direct';
+                backBtn.addEventListener('click', () => backToLive(false));
+                liveInfoDiv.appendChild(backBtn);
+            }
+        }
+
+        // Radio player
+        const radio = document.getElementById('radioAudio');
+        const playPauseRadio = document.getElementById('playPauseRadio');
+        const radioStatusSpan = document.getElementById('radioStatus');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeIcon = document.getElementById('volumeIcon');
+        const equalizerSpans = document.querySelectorAll('#radioEqualizer span');
+        let radioPlaying = false;
+        let eqInterval = null;
+
+        function animateEqualizer() {
+            if (!radioPlaying) return;
+            equalizerSpans.forEach(span => {
+                span.style.height = Math.floor(Math.random() * 18 + 4) + 'px';
+            });
+        }
+        function startEq() { if (eqInterval) clearInterval(eqInterval); eqInterval = setInterval(animateEqualizer, 200); }
+        function stopEq() { if (eqInterval) clearInterval(eqInterval); equalizerSpans.forEach(span => span.style.height = '4px'); }
+        function updateRadioUI() {
+            if (radioPlaying) { playPauseRadio.innerHTML = '<i class="fas fa-pause"></i>'; radioStatusSpan.innerText = 'En direct'; startEq(); }
+            else { playPauseRadio.innerHTML = '<i class="fas fa-play"></i>'; radioStatusSpan.innerText = 'En pause'; stopEq(); }
+        }
+        playPauseRadio.addEventListener('click', () => { if (radioPlaying) radio.pause(); else radio.play().catch(e => console.log(e)); });
+        radio.addEventListener('play', () => { radioPlaying = true; updateRadioUI(); });
+        radio.addEventListener('pause', () => { radioPlaying = false; updateRadioUI(); });
+        radio.addEventListener('ended', () => { radioPlaying = false; updateRadioUI(); });
+        volumeSlider.addEventListener('input', () => {
+            radio.volume = volumeSlider.value;
+            if (radio.volume === 0) volumeIcon.className = 'fas fa-volume-mute';
+            else if (radio.volume < 0.5) volumeIcon.className = 'fas fa-volume-down';
+            else volumeIcon.className = 'fas fa-volume-up';
+        });
+        volumeIcon.addEventListener('click', () => {
+            if (radio.volume > 0) { radio.volume = 0; volumeSlider.value = 0; volumeIcon.className = 'fas fa-volume-mute'; }
+            else { radio.volume = 0.7; volumeSlider.value = 0.7; volumeIcon.className = 'fas fa-volume-up'; }
+        });
+        radio.volume = 0.7;
+
+        const stickyPlayer = document.getElementById('stickyPlayer');
+        const togglePlayerBtn = document.getElementById('togglePlayer');
+        let playerVisible = true;
+        togglePlayerBtn.addEventListener('click', () => {
+            if (playerVisible) { stickyPlayer.style.transform = 'translateY(100%)'; togglePlayerBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Radio'; }
+            else { stickyPlayer.style.transform = 'translateY(0)'; togglePlayerBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Radio'; }
+            playerVisible = !playerVisible;
+        });
+
+        document.getElementById('shareWhatsApp').addEventListener('click', () => { window.open(`https://wa.me/?text=${encodeURIComponent('Regardez TV Light Radio en direct : ' + window.location.href)}`, '_blank'); });
+        document.getElementById('shareFacebook').addEventListener('click', () => { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank'); });
+        document.getElementById('watchYoutube').addEventListener('click', () => { window.open('https://www.youtube.com/@tvlightradio', '_blank'); });
+        document.getElementById('fullscreenBtn').addEventListener('click', () => { const container = document.getElementById('playerContainer'); if (container.requestFullscreen) container.requestFullscreen(); else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen(); });
+
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > 100) header.style.transform = 'translateY(-100%)';
+            else header.style.transform = 'translateY(0)';
+            lastScroll = currentScroll;
+        });
+
+        (async function init() {
+            await renderReplays();
+            await checkLiveStatusAndSwitch();
+            addBackToLiveButton();
+            setInterval(() => { if (!document.hidden) checkLiveStatusAndSwitch(); }, 120000);
+        })();
+    </script>
+</body>
+</html>

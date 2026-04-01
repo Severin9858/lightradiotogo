@@ -1,0 +1,1115 @@
+Voici le code complet de votre page `index.html` avec une section HERO améliorée : le lecteur radio (légèrement réduit) à gauche et une carte de publication unique à droite, avec les fonctionnalités Like (localStorage), partage (WhatsApp, Facebook, copie lien) et "Lire plus" (modal). L'intégration respecte l'existant et est entièrement responsive.
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YG0MJ0L500"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-YG0MJ0L500');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-558CPTQ8');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    
+    <!-- FAVICONS COMPLETS -->
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#1B1464">
+    <meta name="msapplication-TileColor" content="#1B1464">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Light Radio 93.9 FM - Radio Chrétienne à Lomé | Radio Gospel Togo</title>
+    <meta name="description" content="Light Radio 93.9 FM : Radio chrétienne à Lomé. Écoutez la parole de Dieu, musique gospel et émissions spirituelles en direct. La radio qui éclaire votre foi au Togo.">
+    <meta name="keywords" content="Light Radio, radio chrétienne, Lomé, Togo, radio gospel, musique chrétienne, émissions spirituelles, parole de Dieu, 93.9 FM">
+    <meta name="author" content="Light Radio 93.9 FM">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lightradiotogo.com">
+    
+    <!-- OPEN GRAPH / FACEBOOK -->
+    <meta property="og:title" content="Light Radio 93.9 FM - Radio Chrétienne à Lomé">
+    <meta property="og:description" content="Écoutez Light Radio, la radio gospel qui éclaire votre foi au Togo. Diffusion 24h/24 de musique chrétienne et d'enseignements bibliques.">
+    <meta property="og:image" content="https://lightradiotogo.com/images/logoradio.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://lightradiotogo.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Light Radio 93.9 FM">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Light Radio 93.9 FM - Radio Chrétienne à Lomé">
+    <meta name="twitter:description" content="Écoutez Light Radio, la radio gospel qui éclaire votre foi au Togo.">
+    <meta name="twitter:image" content="https://lightradiotogo.com/images/logoradio.jpg">
+    <meta name="twitter:site" content="@lightradiotogo">
+    
+    <!-- DONNÉES STRUCTURÉES SCHEMA.ORG -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "RadioStation",
+        "name": "Light Radio 93.9 FM",
+        "alternateName": "Light Radio Togo",
+        "url": "https://lightradiotogo.com",
+        "logo": "https://lightradiotogo.com/images/logoradio.jpg",
+        "description": "Radio chrétienne à Lomé diffusant la parole de Dieu, musique gospel et émissions spirituelles.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lomé",
+            "addressCountry": "TG"
+        },
+        "telephone": "+22893790101",
+        "email": "contact@lightradiotogo.com",
+        "frequency": "93.9 FM",
+        "genre": ["Christian", "Gospel", "Religious"],
+        "areaServed": {
+            "@type": "City",
+            "name": "Lomé"
+        },
+        "broadcastFrequency": {
+            "@type": "BroadcastFrequencySpecification",
+            "frequency": "93.9",
+            "broadcastFrequencyValue": "93.9"
+        },
+        "sameAs": [
+            "https://www.facebook.com/lightradiotogo",
+            "https://www.youtube.com/lightradiotogo",
+            "https://www.instagram.com/lightradiotogo"
+        ]
+    }
+    </script>
+    
+    <!-- DONNÉES STRUCTURÉES POUR LE SITE WEB -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Light Radio 93.9 FM",
+        "url": "https://lightradiotogo.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://lightradiotogo.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* ========== VARIABLES ET STYLES GLOBAUX ========== */
+        :root {
+            --primary-blue: #1B1464;
+            --secondary-blue: #2A1F8C;
+            --accent-orange: #FFA500;
+            --light-orange: #FFB733;
+            --purple: #8A2BE2;
+            --light-bg: #f8f9ff;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #1B1464, #2A1F8C);
+            --gradient-accent: linear-gradient(135deg, #FFA500, #FFB733);
+            --shadow-sm: 0 5px 15px rgba(27,20,100,0.1);
+            --shadow-md: 0 10px 30px rgba(27,20,100,0.15);
+            --shadow-lg: 0 15px 40px rgba(27,20,100,0.2);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9ff 0%, #eef1ff 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+        @keyframes floatingParticles {
+            0% { transform: translate(0,0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.6; }
+            100% { transform: translate(calc(var(--dx, 100px)), calc(var(--dy, -80px))) rotate(360deg); opacity: 0; }
+        }
+        @keyframes divineRay { 0% { opacity: 0; transform: rotate(10deg) translateX(-100%) scale(1); } 50% { opacity: 0.4; } 100% { opacity: 0; transform: rotate(10deg) translateX(200%) scale(1.2); } }
+        @keyframes titleGlow { 0% { text-shadow: 0 0 20px rgba(255,165,0,0.3), 0 0 40px rgba(138,43,226,0.2); } 50% { text-shadow: 0 0 35px rgba(255,165,0,0.9), 0 0 70px rgba(138,43,226,0.5); } 100% { text-shadow: 0 0 20px rgba(255,165,0,0.3), 0 0 40px rgba(138,43,226,0.2); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        /* ========== HEADER ========== */
+        header {
+            background: var(--gradient-primary);
+            padding: 15px 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: transform 0.3s ease, padding 0.3s ease;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .branding img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-orange);
+            box-shadow: 0 4px 15px rgba(255,165,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .branding h1 {
+            font-size: 26px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .branding span {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+        }
+        nav a {
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        nav a:hover {
+            background: rgba(255,165,0,0.2);
+            transform: translateY(-2px);
+            color: var(--accent-orange);
+        }
+        /* Bouton de téléchargement dans le header */
+        .header-download-btn {
+            background: var(--accent-orange);
+            color: var(--primary-blue);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .header-download-btn:hover {
+            background: white;
+            transform: scale(1.05);
+            color: var(--primary-blue);
+        }
+        header.scrolled {
+            padding: 8px 0;
+        }
+        header.scrolled .branding img {
+            width: 45px;
+            height: 45px;
+            border-width: 2px;
+        }
+        header.scrolled .branding h1 {
+            font-size: 20px;
+        }
+        header.scrolled nav a {
+            padding: 4px 10px;
+            font-size: 0.8rem;
+        }
+        header.scrolled .header-download-btn {
+            padding: 5px 14px;
+            font-size: 0.8rem;
+        }
+
+        /* ========== HERO AMÉLIORÉE (2 colonnes) ========== */
+        .hero-premium {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #1a1a2e;
+            padding: 60px 0;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('event.jpg');
+            background-size: cover;
+            background-position: center;
+            animation: kenBurns 20s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,20,100,0.3), rgba(138,43,226,0.3));
+            z-index: 1;
+        }
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,215,0,0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 15px gold;
+            opacity: 0;
+            animation: floatingParticles 8s infinite ease-in-out;
+        }
+        .particle:nth-child(1) { top: 20%; left: 10%; --dx: 120px; --dy: -90px; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 70%; left: 80%; --dx: -100px; --dy: 70px; animation-delay: 2s; width: 6px; height: 6px; }
+        .particle:nth-child(3) { top: 40%; left: 30%; --dx: 80px; --dy: 100px; animation-delay: 1s; }
+        .particle:nth-child(4) { top: 80%; left: 20%; --dx: -70px; --dy: -110px; animation-delay: 3s; width: 5px; height: 5px; }
+        .particle:nth-child(5) { top: 30%; left: 70%; --dx: 90px; --dy: -60px; animation-delay: 2.5s; }
+        .particle:nth-child(6) { top: 60%; left: 40%; --dx: -110px; --dy: 80px; animation-delay: 4s; width: 7px; height: 7px; }
+        .particle:nth-child(7) { top: 15%; left: 85%; --dx: 60px; --dy: 100px; animation-delay: 1.7s; }
+        .particle:nth-child(8) { top: 90%; left: 60%; --dx: -80px; --dy: -70px; animation-delay: 3.8s; }
+        .particle:nth-child(9) { top: 45%; left: 15%; --dx: 130px; --dy: 50px; animation-delay: 0.8s; width: 5px; height: 5px; }
+        .particle:nth-child(10) { top: 10%; left: 50%; --dx: -90px; --dy: -120px; animation-delay: 5s; }
+        .divine-ray {
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 150%;
+            height: 200%;
+            background: linear-gradient(115deg, transparent 30%, rgba(255,215,0,0.1) 45%, rgba(255,255,255,0.3) 50%, rgba(255,215,0,0.1) 55%, transparent 70%);
+            transform: rotate(20deg);
+            animation: divineRay 12s infinite linear;
+            z-index: 2;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 10;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* Colonne gauche : lecteur radio (légèrement réduit) */
+        .hero-player-col {
+            text-align: center;
+            animation: slideInLeft 0.8s ease;
+        }
+        .hero-player-col .live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,215,0,0.7);
+            padding: 8px 25px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            animation: float 3s ease-in-out infinite;
+        }
+        .hero-player-col .live-pill .dot {
+            width: 12px;
+            height: 12px;
+            background: #ff4444;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #ff3333;
+            animation: pulse 1s infinite;
+        }
+        .hero-player-col h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff, #FFE5B4, #ffffff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInUp 0.8s ease, gradientShift 6s ease infinite, titleGlow 3s infinite alternate;
+        }
+        .hero-player-col h1 span {
+            background: linear-gradient(135deg, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .hero-player-col p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+        }
+        .premium-player {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background: rgba(255,255,255,0.08);
+            padding: 15px 30px;
+            border-radius: 70px;
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,215,0,0.25);
+            box-shadow: 0 0 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,165,0,0.4);
+            animation: scaleIn 0.8s ease 0.4s both;
+            margin: 0 auto;
+            max-width: 500px;
+        }
+        #hero-play {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid white;
+            font-size: 22px;
+            color: #1B1464;
+            cursor: pointer;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 0 35px rgba(255,165,0,0.7);
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #hero-play:hover { transform: scale(1.15) rotate(5deg); background: white; box-shadow: 0 0 55px rgba(255,215,0,1); }
+        .track-info strong { font-size: 1.2rem; color: white; font-weight: 700; text-shadow: 0 0 10px rgba(0,0,0,0.5); }
+        .track-info small { opacity: 1; color: white; display: block; margin-top: 4px; font-size: 0.85rem; }
+        .equalizer { display: flex; gap: 5px; height: 28px; align-items: flex-end; }
+        .equalizer span { width: 5px; background: linear-gradient(to top, #FFA500, #FFD700); border-radius: 3px; animation: equalize 1.2s infinite ease-in-out; }
+        @keyframes equalize { 0%,100% { height: 5px; } 50% { height: 24px; } }
+
+        /* Colonne droite : carte de publication unique */
+        .hero-news-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            animation: slideInRight 0.8s ease;
+            border: 1px solid rgba(255,165,0,0.3);
+        }
+        .hero-news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.3);
+        }
+        .hero-news-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .hero-news-card:hover .hero-news-img {
+            transform: scale(1.03);
+        }
+        .hero-news-content {
+            padding: 20px;
+        }
+        .hero-news-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+        }
+        .hero-news-date {
+            font-size: 0.8rem;
+            color: var(--accent-orange);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero-news-desc {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .hero-card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #1B1464;
+        }
+        .like-btn { color: #e83e8c; }
+        .like-btn.liked { background: #ffe6f0; color: #c2185b; }
+        .share-btn { color: #25D366; }
+        .readmore-btn { background: #f0f2ff; color: var(--primary-blue); }
+        .action-btn:hover { transform: scale(1.05); background: #f0f0f0; }
+        .like-count { font-weight: bold; margin-left: 4px; }
+
+        /* Modal (réutilisée) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-container {
+            background: white;
+            max-width: 550px;
+            width: 90%;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+        .modal-img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+        }
+        .modal-content {
+            padding: 24px;
+        }
+        .modal-content h3 {
+            font-size: 1.7rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        .modal-date {
+            color: var(--accent-orange);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .modal-full-text {
+            color: #2c2c2c;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .close-modal {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .close-modal:hover { background: var(--accent-orange); color: #1B1464; }
+
+        /* ========== STATISTIQUES, MISSION, SERVICES, ETC. (inchangés) ========== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .stat-card i { font-size: 35px; color: var(--accent-orange); margin-bottom: 12px; }
+        .stat-card .number { font-size: 2.2rem; font-weight: bold; color: var(--primary-blue); }
+        .stat-card .label { color: #666; }
+        .mission-full {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 25px;
+            margin: 30px auto;
+            max-width: 1100px;
+            box-shadow: var(--shadow-md);
+        }
+        .services-studio {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 60px 30px;
+            border-radius: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+        }
+        .studio-photos {
+            padding: 60px 20px;
+            background: #f8f9ff;
+        }
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .photo-item {
+            aspect-ratio: 3/4;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; }
+        .live-zone {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .radio-card {
+            background: var(--gradient-primary);
+            border-radius: 25px;
+            padding: 35px;
+            color: white;
+            text-align: center;
+        }
+        .video-box {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        .app-download-cta {
+            background: linear-gradient(135deg, #FFA500, #FFB733);
+            padding: 40px 20px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 1200px;
+            border-radius: 30px;
+        }
+        footer {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 50px 0 25px;
+            margin-top: 60px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        .live-badge {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff0000, #ff4444);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @media (max-width: 1024px) {
+            .hero-grid { gap: 30px; }
+            .hero-player-col h1 { font-size: 2.5rem; }
+            .premium-player { padding: 12px 24px; }
+            .photos-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .hero-player-col h1 { font-size: 2rem; }
+            .hero-player-col p { font-size: 1rem; }
+            .premium-player { max-width: 100%; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .live-zone { grid-template-columns: 1fr; }
+            .photos-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .stats { grid-template-columns: 1fr; }
+            .photos-grid { grid-template-columns: 1fr; }
+            .hero-news-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-558CPTQ8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- BADGE LIVE -->
+    <div class="live-badge">
+        <i class="fas fa-broadcast-tower"></i> EN DIRECT
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="branding">
+                    <img src="images/logoradio.jpg" alt="Light Radio 93.9 FM">
+                    <h1>Light Radio <span>93.9 FM</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="programmes.html">PROGRAMMES</a></li>
+                        <li><a href="equipe.html">ÉQUIPE</a></li>
+                        <li><a href="replay.html">LIVE TV</a></li>
+                        <li><a href="evenements.html">ÉVÉNEMENTS</a></li>
+                        <li><a href="nos-services.html">SERVICES</a></li>
+                        <li><a href="catalogue.html">CATALOGUE</a></li>
+                        <li><a href="audimat.html">AUDIMAT</a></li>
+                        <li><a href="societe.html">SOCIÉTÉ</a></li>
+                        <li><a href="dons.html">DONS</a></li>
+                    </ul>
+                </nav>
+                <button class="header-download-btn" id="headerDownloadBtn">
+                    <i class="fas fa-download"></i> Télécharger l'App
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- HERO AMÉLIORÉE : lecteur radio à gauche, publication unique à droite -->
+    <section class="hero-premium">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+        <div class="divine-ray"></div>
+        <div class="hero-grid">
+            <!-- Colonne gauche : lecteur radio (légèrement réduit) -->
+            <div class="hero-player-col">
+                <div class="live-pill"><span class="dot"></span> EN DIRECT 24/7</div>
+                <h1>Light Radio <span>93.9 FM</span></h1>
+                <p>La radio chrétienne qui éclaire, inspire et transforme les vies au Togo</p>
+                <div class="premium-player">
+                    <button id="hero-play"><i class="fas fa-play" style="color: #1B1464;"></i></button>
+                    <div class="track-info"><strong>Light Radio Live</strong><small id="hero-status">⏸️ En pause</small></div>
+                    <div class="equalizer"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+            </div>
+            <!-- Colonne droite : carte de publication unique -->
+            <div id="heroNewsCard" class="hero-news-card"></div>
+        </div>
+    </section>
+
+    <!-- MODAL POUR LIRE PLUS (réutilisée) -->
+    <div id="newsModal" class="modal-overlay">
+        <div class="modal-container">
+            <img id="modalImg" class="modal-img" src="" alt="image article">
+            <div class="modal-content">
+                <h3 id="modalTitle"></h3>
+                <div class="modal-date" id="modalDate"></div>
+                <div id="modalFullDesc" class="modal-full-text"></div>
+                <button class="close-modal" id="closeModalBtn">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATISTIQUES, MISSION, SERVICES, ETC. (inchangés) -->
+    <section class="stats">
+        <div class="stat-card"><i class="fas fa-users"></i><div class="number">24/7</div><div class="label">Diffusion continue</div></div>
+        <div class="stat-card"><i class="fas fa-globe-africa"></i><div class="number">93.9</div><div class="label">FM Lomé & Streaming</div></div>
+        <div class="stat-card"><i class="fas fa-microphone-alt"></i><div class="number">50+</div><div class="label">Émissions gospel</div></div>
+        <div class="stat-card"><i class="fas fa-heart"></i><div class="number">6+</div><div class="label">Années de service</div></div>
+    </section>
+
+    <section class="mission-full">
+        <div class="container">
+            <h2>Light Radio 93.9 FM — La lumière Des Nations</h2>
+            <p>Bienvenue sur <strong>Light Radio 93.9 FM</strong>, la radio chrétienne qui éclaire les cœurs et diffuse la lumière de l’Évangile depuis Lomé vers tout le Togo et au-delà. À travers nos programmes inspirants, nous avons pour mission d’annoncer la Parole de Dieu, d’encourager la foi et d’apporter un message d’espérance à chaque auditeur. Chaque jour, Light Radio propose une programmation riche et édifiante composée d’émissions spirituelles, de musique gospel inspirante, d’enseignements bibliques profonds et de moments de prière. Notre objectif est d’accompagner les croyants dans leur marche avec Dieu et d’apporter réconfort, encouragement et direction spirituelle dans la vie quotidienne.</p>
+            <h3>Diffusion et accessibilité</h3>
+            <p>Diffusée <strong>24 heures sur 24 sur la fréquence 93.9 FM à Lomé</strong>, Light Radio est également accessible partout dans le monde grâce à notre diffusion en ligne. Que vous soyez au Togo, en Afrique ou ailleurs, vous pouvez rester connecté à une radio qui élève l’âme et fortifie la foi.</p>
+        </div>
+    </section>
+
+    <section class="studio-photos">
+        <div class="container">
+            <h2 class="section-title">Notre Studio Radio</h2>
+            <div class="photos-grid">
+                <div class="photo-item"><img src="images/studio1.jpg" alt="Console studio"></div>
+                <div class="photo-item"><img src="images/micro.jpg" alt="Microphone"></div>
+                <div class="photo-item"><img src="images/studio2.jpg" alt="Animateur"></div>
+                <div class="photo-item"><img src="images/vue.jpg" alt="Vue panoramique"></div>
+                <div class="photo-item"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&auto=format" alt="Cabine"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-studio">
+        <div class="container">
+            <h2><span>PRÉSENTATION DES SERVICES</span> DU STUDIO NOUVELLE GÉNÉRATION</h2>
+            <div class="subhead">🎧 ... Plus qu'une FM, Nous révolutionnons votre contenu radio et digital.</div>
+            <div class="services-grid">
+                <div class="service-item"><i class="fas fa-clock"></i><h3>Temps d'antenne</h3><p>Espace dédié pour vos émissions, prédications ou communications.</p></div>
+                <div class="service-item"><i class="fas fa-bullhorn"></i><h3>Couverture médiatique & communiqués</h3><p>Diffusion professionnelle de vos annonces et informations.</p></div>
+                <div class="service-item"><i class="fas fa-microphone-alt"></i><h3>Production publicitaire audio-web</h3><p>Création de spots radio, scénarisation, voix-off et sound design immersif.</p></div>
+                <div class="service-item"><i class="fas fa-chart-line"></i><h3>Diffusion & Stratégie</h3><p>Aide à la visibilité sur les plateformes de streaming et réseaux.</p></div>
+                <div class="service-item"><i class="fas fa-podcast"></i><h3>Studio Podcast & Webradio</h3><p>Enregistrement audio HD et vidéo 4K multicaméra. Diffusion continue en webradio.</p></div>
+                <div class="service-item"><i class="fas fa-crown"></i><h3>Expérience immersive</h3><p>Console numérique, micros haut de gamme, décor idyllique, caméras 4K.</p></div>
+            </div>
+            <div class="why-choose">
+                <h3>🚀 Pourquoi nous choisir ?</h3>
+                <p>Nous sommes et restons en ce jour la Première et unique radio aux normes internationales indiscutable sur tout le territoire togolais. Une ambiance immersive, des technologies intuitives et une équipe sémillante dédiée à faire entendre votre voix au-delà de vos expectatives. C'est ça la radio et c'est nous.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="live-zone">
+        <div class="radio-card">
+            <img src="images/logoradio.jpg" alt="Light Radio 93.9 FM">
+            <h2>Light Radio Togo en direct</h2>
+            <p id="status">⏸️ En pause</p>
+            <button id="btn"><i class="fas fa-play"></i> Lecture</button>
+            <div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+            <audio id="player" src="https://a9.asurahosting.com/listen/light_radio_93.9fm/radio.mp3" preload="none"></audio>
+        </div>
+        <div class="video-box">
+            <div class="video-frame"><iframe src="https://www.youtube.com/embed/ISxLHQaxAZo" allowfullscreen></iframe></div>
+            <div class="live-banner">🔥 DÉCOUVERTE DU NOUVEAU STUDIO MODERNE DE LIGHT RADIO 93.9 FM | ÉTAPE 1 🚀</div>
+        </div>
+    </section>
+
+    <section class="app-download-cta">
+        <div class="container">
+            <h2>📱 Écoutez Light Radio partout !</h2>
+            <p>Téléchargez notre application mobile gratuite pour accéder à tous les replays, podcasts et rester connecté 24h/24.</p>
+            <button id="downloadAppBtn"><i class="fas fa-download"></i> Télécharger l'application</button>
+            <p style="color: #1B1464; margin-top: 20px; font-size: 0.9rem;">Version Android (APK) – Installation simple et rapide</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div><h3>Light Radio 93.9 FM</h3><p>Radio chrétienne d'édification, d'espérance et de transformation à Lomé - Togo.</p></div>
+                <div><h3>Contact & Adresse</h3><p><i class="fas fa-map-marker-alt"></i> Lomé – Togo</p><p><i class="fas fa-phone"></i> +228 93 79 01 01</p><p><i class="fas fa-envelope"></i> contact@lightradiotogo.com</p></div>
+                <div><h3>Suivez-nous</h3><p><a href="https://web.facebook.com/profile.php?id=61582979020376" target="_blank"><i class="fab fa-facebook"></i> Facebook</a><br><a href="https://www.youtube.com/@tvlightradio" target="_blank"><i class="fab fa-youtube"></i> YouTube</a><br><a href="https://instagram.com/lightradiotogo" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></p></div>
+            </div>
+            <div class="copy">© 2025 Light Radio 93.9 FM – Tous droits réservés</div>
+        </div>
+    </footer>
+
+    <div class="whatsapp" id="whatsappButton" role="button" tabindex="0" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ==================== RADIO PLAYER (existant) ====================
+            const header = document.querySelector('header');
+            const bars = document.querySelectorAll('.bar');
+            const localPlayer = document.getElementById("player");
+            const playBtn = document.getElementById("btn");
+            const statusText = document.getElementById("status");
+            const heroPlayBtn = document.getElementById("hero-play");
+            const heroStatus = document.getElementById("hero-status");
+            let animationInterval;
+            let lastScrollTop = 0;
+            const scrollThreshold = 50;
+
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset;
+                if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+                    header.style.transform = 'translateY(-100%)';
+                    header.classList.remove('scrolled');
+                } else {
+                    header.style.transform = 'translateY(0)';
+                    if (scrollTop > scrollThreshold) header.classList.add('scrolled');
+                    else header.classList.remove('scrolled');
+                }
+                lastScrollTop = scrollTop;
+            });
+
+            function animateBars() { bars.forEach(bar => bar.style.height = (Math.random() * 60 + 20) + "%"); }
+            function stopBars() { clearInterval(animationInterval); bars.forEach(bar => bar.style.height = "20%"); }
+
+            function updateAllControls(isPlaying) {
+                if (isPlaying) {
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+                    statusText.textContent = "🔴 En direct";
+                    heroPlayBtn.innerHTML = '<i class="fas fa-pause" style="color:#1B1464;"></i>';
+                    heroStatus.textContent = "🔴 En direct";
+                    animationInterval = setInterval(animateBars, 200);
+                } else {
+                    playBtn.innerHTML = '<i class="fas fa-play"></i> Lecture';
+                    statusText.textContent = "⏸️ En pause";
+                    heroPlayBtn.innerHTML = '<i class="fas fa-play" style="color:#1B1464;"></i>';
+                    heroStatus.textContent = "⏸️ En pause";
+                    stopBars();
+                }
+            }
+
+            function togglePlay() {
+                if (localPlayer.paused) {
+                    localPlayer.play().then(() => updateAllControls(true)).catch(() => alert("Erreur de lecture"));
+                } else {
+                    localPlayer.pause();
+                    updateAllControls(false);
+                }
+            }
+
+            if (playBtn) playBtn.onclick = togglePlay;
+            if (heroPlayBtn) heroPlayBtn.onclick = togglePlay;
+            updateAllControls(false);
+            
+            // Désactiver autoplay sur iframe YouTube
+            document.querySelectorAll('iframe[src*="youtube"]').forEach(iframe => {
+                let src = iframe.src;
+                if (src.includes('autoplay=1')) iframe.src = src.replace('autoplay=1', 'autoplay=0');
+                else if (!src.includes('autoplay=')) iframe.src += (src.includes('?') ? '&' : '?') + 'autoplay=0';
+            });
+
+            function downloadApp() {
+                const link = document.createElement('a');
+                link.href = 'apk/lightradio-app.apk';
+                link.download = 'LightRadio_93.9FM.apk';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            document.getElementById('downloadAppBtn')?.addEventListener('click', downloadApp);
+            document.getElementById('headerDownloadBtn')?.addEventListener('click', downloadApp);
+
+            // ========== PUBLICATION UNIQUE DANS LE HERO ==========
+            const publication = {
+                id: "hero",
+                title: "Light Radio se digitalise !",
+                image: "https://picsum.photos/id/104/500/280",
+                shortDesc: "Découvrez notre nouvelle plateforme web et mobile pour une expérience radio encore plus immersive.",
+                fullDesc: "Light Radio 93.9 FM lance sa nouvelle plateforme digitale ! Écoutez-nous en direct, accédez aux replays de vos émissions préférées, et recevez les notifications des prochains événements. Une expérience moderne pour rester connecté à la parole de Dieu où que vous soyez. Téléchargez l'application dès maintenant et rejoignez la communauté Light Radio.",
+                date: "1er Avril 2025"
+            };
+
+            // Gestion des likes avec localStorage
+            function getLikeCount(id) {
+                let likes = localStorage.getItem(`like_${id}`);
+                return likes ? parseInt(likes) : 0;
+            }
+            function setLikeCount(id, count) { localStorage.setItem(`like_${id}`, count); }
+            function hasUserLiked(id) { return localStorage.getItem(`liked_${id}`) === 'true'; }
+            function setUserLiked(id, liked) { localStorage.setItem(`liked_${id}`, liked); }
+
+            // Fonctions de partage
+            function shareWhatsApp(title) {
+                const url = encodeURIComponent(window.location.href);
+                const text = encodeURIComponent(`📻 Light Radio - ${title} 🔥 Découvrez cette publication :`);
+                window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+            }
+            function shareFacebook() {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+            }
+            function copyLink() {
+                navigator.clipboard.writeText(window.location.href).then(() => alert("Lien copié dans le presse-papiers !"));
+            }
+
+            // Rendu de la carte
+            const container = document.getElementById('heroNewsCard');
+            function renderHeroCard() {
+                const likeCount = getLikeCount(publication.id);
+                const userLiked = hasUserLiked(publication.id);
+                container.innerHTML = `
+                    <img class="hero-news-img" src="${publication.image}" alt="${publication.title}">
+                    <div class="hero-news-content">
+                        <h3 class="hero-news-title">${publication.title}</h3>
+                        <div class="hero-news-date"><i class="far fa-calendar-alt"></i> ${publication.date}</div>
+                        <p class="hero-news-desc">${publication.shortDesc}</p>
+                        <div class="hero-card-actions">
+                            <button class="action-btn like-btn" data-id="${publication.id}" data-liked="${userLiked}"><i class="fa${userLiked ? 's' : 'r'} fa-heart"></i> <span class="like-count">${likeCount}</span></button>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="action-btn share-btn" data-share="whatsapp" data-title="${publication.title}"><i class="fab fa-whatsapp"></i></button>
+                                <button class="action-btn share-btn" data-share="facebook"><i class="fab fa-facebook-f"></i></button>
+                                <button class="action-btn share-btn" data-share="copy"><i class="fas fa-link"></i></button>
+                            </div>
+                            <button class="action-btn readmore-btn" data-readmore='${JSON.stringify(publication)}'><i class="fas fa-book-open"></i> Lire plus</button>
+                        </div>
+                    </div>
+                `;
+                // Événements
+                const likeBtn = container.querySelector('.like-btn');
+                if (likeBtn) {
+                    likeBtn.addEventListener('click', () => {
+                        const id = likeBtn.dataset.id;
+                        if (!hasUserLiked(id)) {
+                            let current = getLikeCount(id);
+                            current++;
+                            setLikeCount(id, current);
+                            setUserLiked(id, true);
+                            const span = likeBtn.querySelector('.like-count');
+                            if(span) span.innerText = current;
+                            likeBtn.innerHTML = `<i class="fas fa-heart"></i> <span class="like-count">${current}</span>`;
+                            likeBtn.classList.add('liked');
+                        } else {
+                            alert("Vous avez déjà aimé cette publication 🙏");
+                        }
+                    });
+                }
+                container.querySelectorAll('[data-share]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const type = btn.dataset.share;
+                        if(type === 'whatsapp') shareWhatsApp(btn.dataset.title || publication.title);
+                        else if(type === 'facebook') shareFacebook();
+                        else if(type === 'copy') copyLink();
+                    });
+                });
+                const readBtn = container.querySelector('[data-readmore]');
+                if(readBtn) {
+                    readBtn.addEventListener('click', () => {
+                        const data = JSON.parse(readBtn.dataset.readmore);
+                        openModal(data);
+                    });
+                }
+            }
+
+            // Modal
+            const modalOverlay = document.getElementById('newsModal');
+            const modalImg = document.getElementById('modalImg');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDate = document.getElementById('modalDate');
+            const modalFullDesc = document.getElementById('modalFullDesc');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            function openModal(article) {
+                modalImg.src = article.image || '';
+                modalTitle.innerText = article.title;
+                modalDate.innerText = article.date;
+                modalFullDesc.innerText = article.fullDesc;
+                modalOverlay.classList.add('active');
+            }
+            function closeModal() { modalOverlay.classList.remove('active'); }
+            closeModalBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
+
+            renderHeroCard();
+
+            // WhatsApp flottant
+            const whatsappBtn = document.getElementById('whatsappButton');
+            const phone = '22893790101';
+            const appUrl = `whatsapp://send?phone=${phone}`;
+            const webUrl = `https://wa.me/${phone}`;
+            let fallback;
+            function openWhatsApp() {
+                window.location.href = appUrl;
+                fallback = setTimeout(() => { window.location.href = webUrl; }, 700);
+            }
+            function onBlur() { if(fallback) clearTimeout(fallback); window.removeEventListener('blur', onBlur); }
+            if(whatsappBtn) {
+                whatsappBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.addEventListener('blur', onBlur);
+                    openWhatsApp();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+```

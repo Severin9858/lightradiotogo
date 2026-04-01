@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+ <!-- Page d'accueil - Priorité maximale -->
+ <url>
+  <loc>https://lightradiotogo.com/</loc>
+  <lastmod>2025-02-18</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>1.0</priority>
+ </url>
+
+ <!-- Programmes - Mise à jour hebdomadaire -->
+ <url>
+  <loc>https://lightradiotogo.com/programmes.html</loc>
+  <lastmod>2025-02-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+ </url>
+
+ <!-- Notre équipe - Mise à jour mensuelle -->
+ <url>
+  <loc>https://lightradiotogo.com/equipe.html</loc>
+  <lastmod>2025-02-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+ </url>
+
+ <!-- Replay - Mise à jour quotidienne -->
+ <url>
+  <loc>https://lightradiotogo.com/replay.html</loc>
+  <lastmod>2025-02-18</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.9</priority>
+ </url>
+
+ <!-- Événements - Mise à jour hebdomadaire -->
+ <url>
+  <loc>https://lightradiotogo.com/evenements.html</loc>
+  <lastmod>2025-02-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+ </url>
+
+ <!-- Nos services - Mise à jour mensuelle -->
+ <!-- Nos services (avec tiret, sans espace) -->
+ <url>
+  <loc>https://lightradiotogo.com/nos-services.html</loc>
+  <lastmod>2025-02-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+ </url>
+
+ <!-- Catalogue - Mise à jour mensuelle -->
+ <url>
+  <loc>https://lightradiotogo.com/catalogue.html</loc>
+  <lastmod>2025-02-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+ </url>
+
+ <!-- Audimat - Mise à jour quotidienne -->
+ <url>
+  <loc>https://lightradiotogo.com/audimat.html</loc>
+  <lastmod>2025-02-18</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.7</priority>
+ </url>
+
+ <!-- Société - Mise à jour annuelle -->
+ <url>
+  <loc>https://lightradiotogo.com/societe.html</loc>
+  <lastmod>2025-01-15</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
+ </url>
+
+ <!-- Dons - Mise à jour mensuelle -->
+ <url>
+  <loc>https://lightradiotogo.com/dons.html</loc>
+  <lastmod>2025-02-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+ </url>
+
+</urlset>
